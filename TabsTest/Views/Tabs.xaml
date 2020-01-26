@@ -1,0 +1,409 @@
+﻿<Window x:Class="TabsTest.Views.Tabs"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TabsTest.Views"
+        xmlns:ViewModels="clr-namespace:TabsTest.ViewModels"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Title="{Binding RealUserName}" Height="600" Width="1000">
+
+    <Window.DataContext>
+        <ViewModels:TabsViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Label Content="{Binding RealUserName}" HorizontalAlignment="Right" Margin="0,14,5,0" VerticalAlignment="Top" Height="23" Width="97"/>
+
+        <CheckBox IsEnabled="False" IsChecked="{Binding UserIsValid}"  Content="Online" HorizontalAlignment="Right" Margin="0,42,10,0" VerticalAlignment="Top" Width="92"/>
+        <TabControl Margin="5,150,5,5">
+
+            <!--1. Antti-->
+            <TabItem Header="Log In">
+                <Grid Margin="0,0,0,0">
+                    <GroupBox Header="Access Credentials" HorizontalAlignment="Left" Height="300" Margin="10,20,0,0" VerticalAlignment="Top" Width="400">
+                    </GroupBox>
+
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="167,114,0,0" TextWrapping="Wrap" Text="{Binding PossibleUserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+                    <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="167,150,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+                    <Button Command="{Binding UserLoginPlease}" CommandParameter="{Binding ElementName=password}" Content="Log In" HorizontalAlignment="Left" Margin="167,187,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="{Binding ConnectivityStatus}" HorizontalAlignment="Left" Margin="167,229,0,0" VerticalAlignment="Top" Width="120" Height="35"/>
+                    <Label Content="Username" HorizontalAlignment="Left" Margin="76,114,0,0" VerticalAlignment="Top" Width="86"/>
+                    <Label Content="Password" HorizontalAlignment="Left" Margin="76,150,0,0" VerticalAlignment="Top" Width="86"/>
+
+
+
+                </Grid>
+            </TabItem>
+
+
+
+
+
+
+            <!--2. Antti-->
+            <TabItem Header="Register">
+                <Grid  >
+
+                    <GroupBox Header="Register New Read-Only User" HorizontalAlignment="Left" VerticalAlignment="Top" Height="400" Width="400" Margin="10,20,0,0">
+                        <Label Content="{Binding RegistrationStatus}" HorizontalAlignment="Left" Margin="103,291,0,0" VerticalAlignment="Top" Width="158" Height="30"/>
+                    </GroupBox>
+
+
+
+
+
+                    <Label Content="Name" HorizontalAlignment="Left" Margin="23,66,0,0" VerticalAlignment="Top"/>
+                    <TextBox Text="{Binding RegisterNewName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="120,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="120,106,0,0" TextWrapping="Wrap" Text="{Binding RegisterPhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+
+                    <PasswordBox x:Name="RegisterNewPassword" HorizontalAlignment="Left" Margin="121,180,0,0" VerticalAlignment="Top" Width="119"/>
+                    <Label Content="Phone Number" HorizontalAlignment="Left" Margin="23,97,0,0" VerticalAlignment="Top"/>
+
+                    <Label Content="Password" HorizontalAlignment="Left" Margin="23,175,0,0" VerticalAlignment="Top"/>
+
+                    <Button Command="{Binding TryToRegisterNewUser}" CommandParameter="{Binding ElementName=RegisterNewPassword}" Content="Register" HorizontalAlignment="Left" Margin="121,286,0,0" VerticalAlignment="Top" Width="119"/>
+
+
+
+                </Grid>
+            </TabItem>
+
+
+
+
+
+
+
+
+
+
+
+            <!--3. Antti-->
+            <TabItem Header="Public Events" >
+                <Grid >
+                    <GroupBox Header="Register for Event" Margin="10,10,380,241">
+                        <Label Content="Your Name" HorizontalAlignment="Left" Margin="206,41,0,0" VerticalAlignment="Top" Width="78"/>
+                    </GroupBox>
+
+                        <Button Content="Register for Event" HorizontalAlignment="Left" Margin="434,68,0,0" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="296,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+                    <DataGrid IsReadOnly="True" CanUserAddRows="False" ItemsSource="{Binding GetAllPublicEvents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,150,5,5"/>
+                    <Label Content="Selected Event" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" Width="145"/>
+
+                </Grid>
+            </TabItem>
+
+
+
+
+
+
+
+
+
+
+            <!--4. Joonas-->
+            <TabItem Header="Add Event">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="1*"/>
+                        <ColumnDefinition  Width="24*"/>
+                        <ColumnDefinition  Width="24*"/>
+                        <ColumnDefinition  Width="33*"/>
+                        <ColumnDefinition  Width="16*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Fill info of Event" VerticalAlignment="Top" Height="39" Width="232" FontSize="30" Grid.Row="1" Grid.Column="1"/>
+
+                    <TextBox  HorizontalAlignment="Left"  TextWrapping="Wrap" Width="120" Height="23" Text="{Binding InputNameEvent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="2" />
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Event Name" VerticalAlignment="Top" Height="34" Width="184" FontSize="22" Grid.Row="2" Grid.Column="1"/>
+                    <StackPanel  Width="120" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2">
+                        <ComboBox IsEditable="False" DisplayMemberPath="name" SelectedValuePath="eventtypeid"  Height="25" SelectedValue="{Binding Path=SelectETEvent}" ItemsSource="{Binding Path=GetET}" IsSynchronizedWithCurrentItem="True"/>
+                    </StackPanel>
+                    <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap" Text="Event Type" VerticalAlignment="Top" Height="34" Width="184" FontSize="22" Grid.Row="3" Grid.Column="1" />
+                    <StackPanel  Width="120" Grid.RowSpan="2" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="2">
+                        <ComboBox IsEditable="False" DisplayMemberPath="name" SelectedValuePath="userid"  Height="25" SelectedValue="{Binding Path=SelectOrgEvent}" ItemsSource="{Binding Path=GetOrgsKW}" IsSynchronizedWithCurrentItem="True"/>
+                    </StackPanel>
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Organization" VerticalAlignment="Top" Height="34" Width="184" FontSize="22" Grid.Row="4" Grid.Column="1" />
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Date" VerticalAlignment="Top" Height="34" Width="184" FontSize="22" Grid.Row="5" Grid.Column="1" />
+                    <DatePicker HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Height="23" SelectedDate="{Binding Path=SelectDateEvent}" Grid.Row="5" Grid.Column="2"/>
+                    <StackPanel  Width="120" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="2">
+                        <ComboBox IsEditable="False" DisplayMemberPath="info" SelectedValuePath="locationid"  Height="25" SelectedValue="{Binding Path=SelectLocationEvent}" ItemsSource="{Binding Path=GetLocationEvent}" IsSynchronizedWithCurrentItem="True"/>
+                    </StackPanel>
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" Height="34" Width="184" FontSize="22" Grid.Row="6" Grid.Column="1" />
+                    <TextBox   HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"  Text="{Binding InputLimitEvent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="7" Grid.Column="2" />
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Participant limit" VerticalAlignment="Top" Height="34" Width="184" FontSize="22" Grid.Row="7" Grid.Column="1"  />
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Duration (Hours)" VerticalAlignment="Top" Height="34" Width="184" FontSize="22" Grid.Row="8" Grid.Column="1"  />
+                    <TextBox   HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"  Text="{Binding InputHoursEvent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="8" Grid.Column="2"  />
+
+
+
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Repeating events (Optional)" VerticalAlignment="Top" Height="34" Width="275" FontSize="22" Grid.Row="5" Grid.Column="3" />
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Count" VerticalAlignment="Top" Height="34" Width="90" FontSize="18" Grid.Row="6" Grid.Column="3" />
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Frequency" VerticalAlignment="Top" Height="34" Width="90" FontSize="18" Grid.Row="7" Grid.Column="3" />
+                    <TextBlock  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Custom frequency takes number of days between repeat" VerticalAlignment="Top" Height="18" Width="306" FontSize="12" Grid.Row="8" Grid.Column="3" Foreground="#FFF10000" />
+
+                    <TextBox  HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100" Text="{Binding InputCountEvent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.Column="3"  />
+                    <ComboBox Name="freqInput" IsEditable="True" Text="{Binding InputFreqEvent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="7" Grid.Column="3" Height="23" Width="100" >
+                        <ComboBoxItem>None</ComboBoxItem>
+                        <ComboBoxItem>Daily</ComboBoxItem>
+                        <ComboBoxItem>Weekly</ComboBoxItem>
+                        <ComboBoxItem>Monthly</ComboBoxItem>
+                        <ComboBoxItem>Yearly</ComboBoxItem>
+                    </ComboBox>
+                    <Button Content="Submit" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="76" Command="{Binding SubmitEvent}"  Grid.Row="9" Grid.Column="3"/>
+                </Grid>
+            </TabItem>
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--5.Janne-->
+            <TabItem Header="Date Picker">
+                <Grid>
+
+                    <Label Content="Find all events between given dates" HorizontalAlignment="Left" VerticalAlignment="Top" Width="248" Height="32" Margin="26,0,0,0" FontSize="15"/>
+                    <Label Content="{Binding Date1}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="98" Margin="63,68,0,0" RenderTransformOrigin="0.927,0.248"/>
+                    <Label Content="{Binding Date2}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="201,66,0,0" Height="38" Width="106"/>
+                    <DatePicker Language="en-GB" SelectedDateFormat="Short" SelectedDate="{Binding Path=Date1, StringFormat='yyyy-MM-dd'}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,37,0,0" Width="123">
+                        <DatePicker.Resources>
+                            <Style TargetType="DatePickerTextBox">
+                                <Setter Property="IsReadOnly" Value="True"/>
+                            </Style>
+                        </DatePicker.Resources>
+                    </DatePicker>
+                    <DatePicker Language="en-GB" SelectedDateFormat="Short" SelectedDate="{Binding Path=Date2, StringFormat='yyyy-MM-dd'}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="184,37,0,0" Width="139">
+                        <DatePicker.Resources>
+                            <Style TargetType="DatePickerTextBox">
+                                <Setter Property="IsReadOnly" Value="True"/>
+                            </Style>
+                        </DatePicker.Resources>
+                    </DatePicker>
+                    <Label Content="From" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.06,0.445" Width="170" Margin="26,68,0,0"/>
+                    <Label Content="To" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="184,66,0,0" Width="61"/>
+                    <DataGrid IsReadOnly="True" CanUserAddRows="False" Name="Grid" Margin="4,139,5,5" ItemsSource="{Binding EventsGotten, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"/>
+                    <Button Command="{Binding StartSearch}" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="408,37,0,0"/>
+
+                </Grid>
+
+            </TabItem>
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--6. Joonas-->
+            <TabItem Header="Keywords" >
+                <Grid Background="#FFE5E5E5"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="1*"/>
+                        <ColumnDefinition  Width="49*"/>
+                        <ColumnDefinition  Width="49*"/>
+                        <ColumnDefinition  Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="65*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Choose organization to get keywords from" VerticalAlignment="Center" FontSize="21" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                    <StackPanel  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" MinWidth="100" MaxWidth="300">
+                        <ComboBox IsEditable="False" DisplayMemberPath="name" SelectedValuePath="userid"  Height="25" SelectedValue="{Binding Path=SelectOrgKW}" ItemsSource="{Binding Path=GetOrgsKW}" IsSynchronizedWithCurrentItem="True"/>
+                    </StackPanel>
+                    <Button Content="Submit" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="76" Command="{Binding SubmitKW}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                    <TextBlock HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Specialist Keywords" VerticalAlignment="Center" FontSize="18" Grid.Row="4" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Targetgroup Keywords" VerticalAlignment="Center" FontSize="18" Grid.Row="4" Grid.Column="2"/>
+
+                    <DataGrid Name="GridKW"  HorizontalAlignment="Center" Height="248"  VerticalAlignment="Top" ColumnWidth="*"  Width="316" ItemsSource="{Binding Table1KW}" Grid.Row="5" Grid.Column="1" CanUserAddRows="False"/>
+                    <DataGrid  Name="GridKW2" HorizontalAlignment="Center" Height="248"  VerticalAlignment="Top" ColumnWidth="*" Width="316" ItemsSource="{Binding Table2KW}" Grid.Row="5" Grid.Column="2" CanUserAddRows="False"/>
+                </Grid>
+            </TabItem>
+
+
+
+
+
+
+
+
+
+
+            <!--7. Create accounts: An-->
+            <TabItem Header="Create Accounts">
+                <Grid>
+                    <TextBlock x:Name="text1" HorizontalAlignment="Left"  Margin="60,48,0,0" TextWrapping="Wrap" Text="Create Accounts" VerticalAlignment="Top" Height="30" Width="258" FontSize="28" FontFamily="Trebuchet MS" Foreground="Black" />
+                    <TextBlock x:Name="userName" HorizontalAlignment="Left" Margin="120,120,0,0"  Text="Name"  Height="30" Width="150" FontSize="18" FontFamily="Sitka Text" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="phone" HorizontalAlignment="Left" Margin="120,150,0,0" TextWrapping="Wrap" Text="Phone number" VerticalAlignment="Top" Height="30" Width="150" FontSize="18" Grid.RowSpan="2" FontFamily="Sitka Text" />
+                    <TextBlock x:Name="pass" HorizontalAlignment="Left" Margin="120,180,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Height="30" Width="150" FontSize="18" Grid.Row="1" FontFamily="Sitka Text" />
+                    <TextBlock x:Name="roleID" HorizontalAlignment="Left" Margin="120,210,0,0"  Text="O. R."  Height="30" Width="150" FontSize="18" FontFamily="Sitka Text" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="enabled" HorizontalAlignment="Left" Margin="120,251,0,0" TextWrapping="Wrap" Text="Enabled" VerticalAlignment="Top" Height="30" Width="150" FontSize="18" FontFamily="Sitka Text" UseLayoutRounding="False" />
+
+                    <TextBox Text="{Binding CreateNewNameUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="23" Margin="260,120,0,0" VerticalAlignment="Top" Width="180" />
+                    <TextBox Text="{Binding UserPhoneNumber}" HorizontalAlignment="Left" Height="23" Margin="260,150,0,0"   VerticalAlignment="Top" Width="180" />
+                    <TextBox Text="{Binding UserPassword}" HorizontalAlignment="Left" Height="23" Margin="260,180,0,0"   VerticalAlignment="Top" Width="180" Grid.Row="1" />
+                    <StackPanel Margin="259,210,0,50" Width="180" HorizontalAlignment="Left">
+                        <ComboBox IsEditable="False" DisplayMemberPath="OrganizationR" SelectedValuePath="roleid"  Height="25" SelectedValue="{Binding Path=SelectOR}" ItemsSource="{Binding Path=GetOR}" IsSynchronizedWithCurrentItem="True"/>
+                    </StackPanel>
+                    <TextBox Text="{Binding EnableUser}"  HorizontalAlignment="Left" Height="23" Margin="260,251,0,0"   VerticalAlignment="Top" Width="180" RenderTransformOrigin="0.546,-0.587" Background="{x:Null}" />
+
+                    <Button Content="Submit" Command="{Binding AddAccounts}" HorizontalAlignment="Left" Margin="311,311,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="-0.107,1.616" Background="#FFB4AFAF" />
+                </Grid>
+            </TabItem>
+
+            <!--8. An-->
+            <TabItem Header="Create Organizations">
+                <Grid>
+                    <TextBlock x:Name="text2" HorizontalAlignment="Left"  Margin="60,48,0,0" TextWrapping="Wrap" Text="Create Organization" VerticalAlignment="Top" Height="30" Width="258" FontSize="28" FontFamily="Trebuchet MS" Foreground="Black" />
+                    <TextBlock x:Name="nameOR" HorizontalAlignment="Left" Margin="120,120,0,0"  Text="Name"  Height="30" Width="150" FontSize="18" FontFamily="Sitka Text" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="groupID" HorizontalAlignment="Left" Margin="120,173,0,0"  Text="GroupID"  Height="30" Width="150" FontSize="18" FontFamily="Sitka Text" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="infor" HorizontalAlignment="Left" Margin="120,222.5,0,0" TextWrapping="Wrap" Text="Information" VerticalAlignment="Top" Height="30" Width="150" FontSize="18" FontFamily="Sitka Text" UseLayoutRounding="False" />
+
+                    <TextBox Text="{Binding CreateNewOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="23" Margin="260,120,0,0" VerticalAlignment="Top" Width="180" />
+                    <TextBox Text="{Binding CreateGroupID}" HorizontalAlignment="Left" Height="23" Margin="260,173,0,0"   VerticalAlignment="Top" Width="180" />
+                    <TextBox Text="{Binding Createinfor}"  HorizontalAlignment="Left" Height="24" Margin="260,220,0,0"   VerticalAlignment="Top" Width="180" />
+
+                    <!--<RadioButton x:Name="customer" Content="Customer" Margin="-390,302,-200,227" Width="168"/>
+                <RadioButton x:Name="OR"  Content="Organization representative" Margin="-180,272,180,253" Width="180"/>-->
+                    <Button Content="Submit" Command="{Binding AddOR}" HorizontalAlignment="Left" Margin="300,294,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="-0.107,1.616" Background="#FFB4AFAF" />
+                    <!--<Label Content="{Binding }"-->
+                </Grid>
+
+            </TabItem>
+
+
+
+
+
+
+
+
+
+
+
+            <!--9. Antti-->
+            <TabItem Header="Events Management" Visibility="{Binding CanShowTabs, UpdateSourceTrigger=PropertyChanged, FallbackValue=Collapse}">
+                <Grid Margin="0">
+                    <GroupBox Header="Edit Event Information" HorizontalAlignment="Left" Height="222" Margin="3,12,0,0" VerticalAlignment="Top" Width="736">
+                        <Label x:Name="EventMan_Status" Content="" HorizontalAlignment="Left" Margin="408,44,0,0" VerticalAlignment="Top" Width="215"/>
+                    </GroupBox>
+                    <TextBox x:Name="UserMan_Name_Copy" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="{Binding SelectedItem.name, ElementName=EventManAllEventsDatagrid, Mode=OneWay}" Width="215" Margin="136,42,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBox  x:Name="UserMan_PhoneNum_Copy" Height="23" TextWrapping="Wrap" Text="{Binding SelectedItem.eventtype, ElementName=EventManAllEventsDatagrid, Mode=OneWay}" Width="215" Margin="136,75,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBox x:Name="UserMan_RoleID_Copy" Height="23" TextWrapping="Wrap" Text="{Binding SelectedItem.organizerid, ElementName=EventManAllEventsDatagrid, Mode=OneWay}" Width="215" Margin="136,114,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBox x:Name="UserMan_Organization_Copy" Height="23" TextWrapping="Wrap" Text="{Binding SelectedItem.date, ElementName=EventManAllEventsDatagrid, Mode=OneWay}" Width="215" Margin="136,151,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBox x:Name="UserMan_Enabled_Copy" Height="23" TextWrapping="Wrap" Text="{Binding SelectedItem.participants, ElementName=EventManAllEventsDatagrid, Mode=OneWay}" Width="215" Margin="136,191,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.7,0.565"/>
+                    <Label Content="Name" HorizontalAlignment="Left" Margin="36,38,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Event Type" HorizontalAlignment="Left" Margin="36,71,0,0" VerticalAlignment="Top"/>
+                    <Label Content="OrganizerID" HorizontalAlignment="Left" Margin="36,110,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Date" HorizontalAlignment="Left" Margin="36,147,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Participants" HorizontalAlignment="Left" Margin="36,191,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Save" HorizontalAlignment="Left" Margin="418,41,0,0" VerticalAlignment="Top" Width="75" Click="UpdateCurrentUSer_Button_Click"/>
+                    <Button Content="Refresh Events" HorizontalAlignment="Left" Margin="618,197,0,0" VerticalAlignment="Top" Width="107"/>
+                    <Button Content="Delete Event" HorizontalAlignment="Left" Margin="418,100,0,0" VerticalAlignment="Top" Width="75" Click="UpdateCurrentUSer_Button_Click"/>
+
+
+
+
+                    <DataGrid ColumnWidth="*" x:Name="EventManAllEventsDatagrid" IsReadOnly="True" CanUserAddRows="False" ItemsSource="{Binding GetAllPublicEvents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,250,0,0" />
+
+                </Grid>
+            </TabItem>
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--10. Antti-->
+            <TabItem Header="User Management" Visibility="{Binding CanShowTabs, UpdateSourceTrigger=PropertyChanged, FallbackValue=Collapse}">
+                <Grid>
+                    <GroupBox Header="Edit User Information" HorizontalAlignment="Left" Height="222" Margin="10,10,0,0" VerticalAlignment="Top" Width="736">
+                    </GroupBox>
+                    <TextBox x:Name="UserMan_Name" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="{Binding ElementName=UserManagementDataGrd, Mode=OneWay, Path=SelectedItem.name}" Width="215" Margin="143,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBox  x:Name="UserMan_PhoneNum" Height="23" TextWrapping="Wrap" Text="{Binding ElementName=UserManagementDataGrd, Mode=OneWay, Path=SelectedItem.phonenumber}" Width="215" Margin="143,73,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBox x:Name="UserMan_RoleID" Height="23" TextWrapping="Wrap" Text="{Binding ElementName=UserManagementDataGrd, Mode=OneWay, Path=SelectedItem.roleid}" Width="215" Margin="143,112,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                    <DataGrid ColumnWidth="*" Name="UserManagementDataGrd" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="True"  ItemsSource="{Binding GetAllUsersTable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,250,10,0" />
+                    <Label Content="{Binding SelectedUserMan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="337,106,0,0" VerticalAlignment="Top" Height="28" Width="82"/>
+                    <TextBox x:Name="UserMan_Organization" Height="23" TextWrapping="Wrap" Text="{Binding ElementName=UserManagementDataGrd, Mode=OneWay, Path=SelectedItem.organizationr}" Width="215" Margin="143,149,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBox x:Name="UserMan_Enabled" Height="23" TextWrapping="Wrap" Text="{Binding ElementName=UserManagementDataGrd, Mode=OneWay,Path=SelectedItem.enabled}" Width="215" Margin="143,189,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.7,0.565"/>
+                    <Label Content="Name" HorizontalAlignment="Left" Margin="43,36,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Phone Number" HorizontalAlignment="Left" Margin="43,69,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Role" HorizontalAlignment="Left" Margin="43,108,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Organization" HorizontalAlignment="Left" Margin="43,145,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Enabled" HorizontalAlignment="Left" Margin="43,189,0,0" VerticalAlignment="Top"/>
+
+                    <Button Content="Save" HorizontalAlignment="Left" Margin="425,39,0,0" VerticalAlignment="Top" Width="75" Click="UpdateCurrentUSer_Button_Click"/>
+                    <Button Content="Delete User" HorizontalAlignment="Left" Margin="425,97,0,0" VerticalAlignment="Top" Width="75" Click="DeleteUser_Button_Click"/>
+                    <Button Content="Refresh Users" HorizontalAlignment="Left" Margin="625,195,0,0" VerticalAlignment="Top" Width="107"/>
+                    <Label x:Name="UserMan_Status" Margin="544,39,253,307"/>
+
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="Logs" Visibility="{Binding CanShowTabs, UpdateSourceTrigger=PropertyChanged, FallbackValue=Collapse}">
+                <Grid>
+                    <DataGrid ColumnWidth="*" IsReadOnly="True" CanUserAddRows="False" ItemsSource="{Binding GetAllLogs}" ></DataGrid>
+                </Grid>
+            </TabItem>
+         
+
+
+
+
+
+
+
+
+
+
+
+        </TabControl>
+        <Image HorizontalAlignment="Left" Height="150" Margin="5,0,-103,0" VerticalAlignment="Top" Width="1090" Source="lulz.jpg"/>
+
+
+
+
+    </Grid>
+</Window>
